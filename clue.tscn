@@ -30,3 +30,5 @@ shape = SubResource( 3 )
 transform = Transform( 1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3, 4 )
 
 [connection signal="input_event" from="clueArea" to="." method="_on_clueArea_input_event"]
+[connection signal="mouse_entered" from="clueArea" to="." method="_on_clueArea_mouse_entered"]
+[connection signal="mouse_exited" from="clueArea" to="." method="_on_clueArea_mouse_exited"]

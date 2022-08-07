@@ -5,6 +5,10 @@ export var hasMovementControl = true
 var turningLeft = false
 var turningRight = false
 
+var defaultCursor = load("res://cursors/magnifying_glass.png")
+var leftCursor = load("res://cursors/turn_left.png")
+var rightCursor = load("res://cursors/turn_right.png")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,12 +45,16 @@ func handleTurning(delta):
 
 func _on_Left_Area_mouse_entered():
 	turningLeft = true
+	Input.set_custom_mouse_cursor(leftCursor)
 func _on_Left_Area_mouse_exited():
 	turningLeft = false
+	Input.set_custom_mouse_cursor(defaultCursor)
 func _on_Right_Area_mouse_entered():
 	turningRight = true
+	Input.set_custom_mouse_cursor(rightCursor)
 func _on_Right_Area_mouse_exited():
 	turningRight = false
+	Input.set_custom_mouse_cursor(defaultCursor)
 
 
 func _on_clueBackButton_button_down():

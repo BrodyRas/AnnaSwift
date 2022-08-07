@@ -34,8 +34,8 @@ func _ready():
 "
 
 [sub_resource type="CylinderShape" id=5]
-radius = 5.0
-height = 10.0
+radius = 3.0
+height = 14.0
 
 [node name="WalkNode" type="Spatial"]
 script = ExtResource( 1 )
@@ -49,7 +49,9 @@ material/0 = SubResource( 2 )
 script = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeshInstance/MoveArea"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.661, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.64344, 0 )
 shape = SubResource( 5 )
 
 [connection signal="input_event" from="MeshInstance/MoveArea" to="." method="_on_MoveArea_input_event"]
+[connection signal="mouse_entered" from="MeshInstance/MoveArea" to="." method="_on_MoveArea_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance/MoveArea" to="." method="_on_MoveArea_mouse_exited"]
