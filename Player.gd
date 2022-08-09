@@ -21,6 +21,15 @@ func _ready():
 	var clues = get_tree().get_root().find_node("Clues", true, false).get_children()
 	for clue in clues:
 		clue.connect("clueClicked", self, "_on_clueClicked")
+	
+	# Connect to NPCs, so we can talk to them 
+	var NPCs = get_tree().get_root().find_node("NPCs", true, false).get_children()
+	for NPC in NPCs:
+		NPC.connect("npcClicked", self, "_on_clueClicked")
+
+func _on_NPC_Clicked(camera: Camera):
+	camera.current = true
+	hasMovementControl = false
 
 	
 func _on_clueClicked(camera: Camera):
@@ -43,20 +52,28 @@ func handleTurning(delta):
 	if turningRight:
 		self.rotate_y(deg2rad(-turnSpeed))
 
-func _on_Left_Area_mouse_entered():
+func resumeMovement():
+	self.find_node("playerCamera", true, true).current = true
+	hasMovementControl = true
+
+func _on_clueBackButton_button_down():
+	resumeMovement()
+func _on_npcBackButton_button_down():
+	resumeMovement()
+
+# Turn left/right based on what panel you're hovering over
+func _on_Left_Panel_mouse_entered():
 	turningLeft = true
 	Input.set_custom_mouse_cursor(leftCursor)
-func _on_Left_Area_mouse_exited():
+func _on_Left_Panel_mouse_exited():
 	turningLeft = false
 	Input.set_custom_mouse_cursor(defaultCursor)
-func _on_Right_Area_mouse_entered():
+func _on_Right_Panel_mouse_entered():
 	turningRight = true
 	Input.set_custom_mouse_cursor(rightCursor)
-func _on_Right_Area_mouse_exited():
+func _on_Right_Panel_mouse_exited():
 	turningRight = false
 	Input.set_custom_mouse_cursor(defaultCursor)
 
 
-func _on_clueBackButton_button_down():
-	self.find_node("playerCamera", true, true).current = true
-	hasMovementControl = true
+
