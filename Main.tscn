@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui_theme.tres" type="Theme" id=2]
@@ -30,6 +30,14 @@ albedo_color = Color( 0.176471, 0.0392157, 0.396078, 1 )
 
 [sub_resource type="SpatialMaterial" id=19]
 albedo_color = Color( 0.776471, 0.141176, 0.141176, 1 )
+
+[sub_resource type="SphereMesh" id=22]
+
+[sub_resource type="SpatialMaterial" id=23]
+albedo_color = Color( 0.443137, 0.941176, 0.592157, 1 )
+metallic_specular = 0.49
+
+[sub_resource type="SphereShape" id=24]
 
 [node name="Main" type="Node"]
 
@@ -232,6 +240,21 @@ transform = Transform( -0.99596, -0.0816029, -0.0374742, -0.0885214, 0.822168, 0
 [node name="CollisionShape" parent="NPCs/GenericNPC2/Area" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0 )
 
+[node name="GenericNPC3" parent="NPCs" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.53296, 0, 20.7843 )
+
+[node name="MeshInstance" parent="NPCs/GenericNPC3" index="0"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.654, 1, 1.07 )
+mesh = SubResource( 22 )
+material/0 = SubResource( 23 )
+
+[node name="Camera" parent="NPCs/GenericNPC3" index="1"]
+transform = Transform( -1, -4.63594e-08, 7.41185e-08, 0, 0.847817, 0.530289, -8.74228e-08, 0.530289, -0.847817, -0.0607834, 4.62399, -3.7891 )
+
+[node name="CollisionShape" parent="NPCs/GenericNPC3/Area" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.677556, 1.01668, 1.08352 )
+shape = SubResource( 24 )
+
 [connection signal="mouse_entered" from="MovementUI/Left Panel" to="Player" method="_on_Left_Panel_mouse_entered"]
 [connection signal="mouse_exited" from="MovementUI/Left Panel" to="Player" method="_on_Left_Panel_mouse_exited"]
 [connection signal="mouse_entered" from="MovementUI/Right Panel" to="Player" method="_on_Right_Panel_mouse_entered"]
@@ -245,3 +268,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1, 0 )
 
 [editable path="Clues/GenericClue2"]
 [editable path="NPCs/GenericNPC2"]
+[editable path="NPCs/GenericNPC3"]

@@ -17,5 +17,7 @@ func _on_MoveArea_input_event(camera, event, position, normal, shape_idx):
 # Custom cursor stuff
 func _on_MoveArea_mouse_entered():
 	Input.set_custom_mouse_cursor(moveCursor)
+	self.find_node("MeshInstance").visible = true
 func _on_MoveArea_mouse_exited():
 	Input.set_custom_mouse_cursor(defaultCursor)
+	self.find_node("MeshInstance").visible = false
